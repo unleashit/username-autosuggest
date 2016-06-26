@@ -15,10 +15,15 @@ export default class SuggestUsernames {
         return this.suggestions;
     }
     retrieveSingle(type) {
+
+    // get right suggestion and add it to the state
         this['_sugg' + type]();
+
+    // return the last suggestion added to the array
         return this.suggestions[this.suggestions.length - 1];
     }
     _findSeperator() {
+
     // if the user has a seperator return it, else an empty string
         if (/_/.test(this.input)) return '_';
         if (/-/.test(this.input)) return '-';
@@ -26,6 +31,7 @@ export default class SuggestUsernames {
         return '';
     }
     _sugg1() {
+
     // add language simularity
         let pieces = this.sep ? this.input.split(this.sep) : 0;
 
@@ -50,6 +56,7 @@ export default class SuggestUsernames {
             );
 
         } else {
+
         // no seperator found so just use the full input to find related word
             this.suggestions.push(
                 similarWords(this.input, simpleDict)[this.tries++].word
@@ -62,6 +69,7 @@ export default class SuggestUsernames {
         this.suggestions.push(this.input + this.sep + suffix);
     }
     _sugg3() {
+        
         // add random superlative suffix
         // was having a bit of fun with the choice of names... in a real professional situation, we'd be a bit more selective  ;-)
         this.sep = (this.sep !=='') ? this.sep : '_'; // enforce a sep here

@@ -9,6 +9,8 @@ export default {
         span.innerText = text;
         container.appendChild(this.createIcon('exclamation-triangle', 'fa-2x'));
         container.appendChild(span);
+
+        // prints validations
         usernameValidations.appendChild(container);
     },
     suggestions (username, items) {
@@ -23,6 +25,7 @@ export default {
         container.appendChild(this.createIcon('exclamation-triangle', 'fa-2x'));
         container.appendChild(span);
 
+        // prints suggestion headline
         usernameSuggestions.appendChild(container);
 
         let scontainer = document.createElement('ul');
@@ -33,11 +36,14 @@ export default {
         }).join('');
         container.appendChild(scontainer);
 
+        // prints suggestions
         usernameSuggestions.appendChild(scontainer);
-        
+
+        // the following adds a listener to the suggestions, and adds them to the input onclick
         let suggestions = document.querySelector('.suggestions');
         let input = document.getElementById('chg-balloon-input');
 
+        // listener is set on the UL, with delegation for the LIs
         suggestions.addEventListener('click', (e)=> {
             console.log('click');
             input.value = e.target.getAttribute('data-suggestion');
@@ -55,9 +61,14 @@ export default {
         span.appendChild(text2);
         container.appendChild(this.createIcon('check-circle', 'fa-2x'));
         container.appendChild(span);
+
+        // prints success msg
         usernameSuggestions.appendChild(container);
     },
     createIcon(icon, extra) {
+
+        // returns desired font awesome formatted classes
+        // two params, the icon name and any extra classes
         const i = document.createElement('i');
         i.className = `fa fa-${icon} ${extra}`;
         return i;

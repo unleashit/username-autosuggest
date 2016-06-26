@@ -32,12 +32,20 @@ axios("http://chegg-tutors.appspot.com/coding-challenge/api/user/?username=Trump
 let submitBtn = document.getElementById('chg-balloon-submit');
 let input = document.getElementById('chg-balloon-input');
 
-// Note: a more accessible solution would be to add a form tag in the html and check for onsubmit (supports enter key by default)
+// Note: a more accessible solution would be to add a form tag in the html
+// and check for onsubmit (supports enter key by default)
 submitBtn.addEventListener('click', (e)=> {
+
+    // clears any previous suggestions/validations
     render.clearAll();
+
+    // validates input and returns true or false
     if (validations.userInput(input.value)) {
-        
+
+    // queries server for username. If available, render congrats. If not, offer suggestions.
         checkUsername.queryServer(input.value);
     }
+
+    // clears the user input
     input.value = '';
 });

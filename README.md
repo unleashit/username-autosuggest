@@ -12,17 +12,18 @@ Simple user registration form that validates user input, then queries a server t
     
 Each batch of new suggestions is sent to the server to be validated. In order to work well with a large database, the batch function calls itself recursively until there are at least three valid suggestions.
 
-To use in dev mode:
+###Live version
+
+Visit: http://challenge.jasongallagher.org
+
+###To use in dev mode
 
 1. `npm install`
 2. `npm run start` (runs webpack dev server)
 3. navigate to localhost:8080
 
-To build a production version:
+###To build a production version
 
 1. `npm run production`
 2. open `index.html` in `dist` folder
-
-To see live, visit: http://challenge.jasongallagher.org
-
 
