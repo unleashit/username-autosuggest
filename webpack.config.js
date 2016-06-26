@@ -1,3 +1,4 @@
+var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 let appCSS = new ExtractTextPlugin('./css/style.css', {allChunks: false});
 
@@ -7,6 +8,13 @@ var HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
     filename: 'index.html',
     inject: 'body'
 });
+
+var NODE_ENV = process.env.NODE_ENV || 'development';
+
+var devtoolConfig = (NODE_ENV === 'production') ? false : '#source-map';
+
+console.log('node_env: ' + NODE_ENV);
+console.log('devtool config: ' + devtoolConfig);
 
 module.exports = {
     entry: [
@@ -24,14 +32,9 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loader: "babel-loader",
-                //query: {presets: ['react']}
+                loader: "babel-loader"
             },
             {test: /\.js$/, loader: "eslint-loader", exclude: /node_modules/},
-            // {
-            //     test: /\.css$/,
-            //     loader: 'style!css!'
-            // }
         ]
     },
     eslint: {
@@ -41,7 +44,22 @@ module.exports = {
     sassLoader: {
         includePaths: [ './app/css' ]
     },
-    plugins: [HtmlWebpackPluginConfig, appCSS]
+    plugins: [
+        HtmlWebpackPluginConfig,
+        appCSS,
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            },
+            comments: false,
+            //sourceMap: false
+        }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': JSON.stringify(NODE_ENV)
+            }
+        })
+    ]
 };
 
 
