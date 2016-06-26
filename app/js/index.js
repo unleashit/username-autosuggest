@@ -36,38 +36,8 @@ let input = document.getElementById('chg-balloon-input');
 submitBtn.addEventListener('click', (e)=> {
     render.clearAll();
     if (validations.userInput(input.value)) {
-        // checkUsername.getServerCalls() === 0 ?
-        //     checkUsername.firstTime(input.value) :
-        //     checkUsername.repeatedTime(input.value, checkUsername.handleSuggestions())
+        
         checkUsername.queryServer(input.value);
     }
     input.value = '';
 });
-
-
-
-
-
-
-// let checkUsers = document.getElementById('check-users'),
-//     results = document.getElementById('results');
-//
-// checkUsers.addEventListener('submit', (e)=> {
-//    e.preventDefault();
-//
-//     let val = checkUsers.querySelector('#search').value;
-//     const suggestUsernames = new SuggestUsernames(val);
-//
-//     let usernames = suggestUsernames.retrieveAll();
-//
-//     results.innerHTML = usernames.map(item => {
-//     return `<div>
-//                 ${item}
-//             </div>`
-//     }).join('');
-//
-//    console.log(suggestUsernames.retrieveSingle(1));
-//    console.log(suggestUsernames.retrieveSingle(2));
-//    console.log(suggestUsernames.retrieveSingle(3));
-
-//});

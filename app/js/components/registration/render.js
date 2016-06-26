@@ -29,11 +29,19 @@ export default {
         scontainer.className = "suggestions";
         // cheating here with innerHTML due to time constraints!
         scontainer.innerHTML = items.map(item => {
-            return `<li>${item}</li>`
+            return `<li class="suggestion" data-suggestion=${item}>${item}</li>`
         }).join('');
         container.appendChild(scontainer);
 
         usernameSuggestions.appendChild(scontainer);
+        
+        let suggestions = document.querySelector('.suggestions');
+        let input = document.getElementById('chg-balloon-input');
+
+        suggestions.addEventListener('click', (e)=> {
+            console.log('click');
+            input.value = e.target.getAttribute('data-suggestion');
+        });
     },
     success (username) {
         const container = document.createElement('div');
