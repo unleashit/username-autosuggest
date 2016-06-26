@@ -18,14 +18,14 @@ export default {
 
         axios.get(`http://chegg-tutors.appspot.com/coding-challenge/api/user/?username=${q}`)
             .then(resp => {
-                console.log(resp);
+                //console.log(resp);
                 this.serverCalls++;
 
                 // check to see if chosen username absent from the response. If so, they are good to go.
                 if (!_.find(resp.data, u => {
                     return u.username === username;
                 })) {
-                    console.log('user available!');
+                    //console.log('user available!');
                     return render.success(username);
                 }
 
@@ -60,11 +60,12 @@ export default {
                 validSuggestions = validSuggestions.concat(newSuggestions);
 
                 // recursively call this func until we have 3+ valid suggestions
-                if (validSuggestions.length < 3) this.queryAgain(username, validSuggestions);
-
-                console.log('valid suggestions: ' + validSuggestions);
-                return render.suggestions(username, validSuggestions.slice(0, 3));
-
+                if (validSuggestions.length < 3) {
+                    this.queryAgain(username, validSuggestions);
+                } else {
+                    //console.log('valid suggestions: ' + validSuggestions);
+                    render.suggestions(username, validSuggestions.slice(0, 3));
+                }
             })
             .catch(err => {
                 console.error(err);
