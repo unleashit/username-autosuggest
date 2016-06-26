@@ -1,0 +1,25 @@
+// want to be dry but don't have the time to do namespaced css, so recreating some shared parts...
+
+// utility classes
+.container {
+  max-width: 450px;
+  margin: auto;
+}
+.clearfix:after {
+  content:" ";
+  display:table;
+  clear:both;
+}
+
+// basic elements
+strong {
+  font-family: "Arial Black", arial, sans-serif;
+}
+
+//icons
+.fa-exclamation-triangle {
+  color: red;
+}
+.fa-check-circle {
+  color: green;
+}
