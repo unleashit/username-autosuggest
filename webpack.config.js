@@ -24,7 +24,7 @@ module.exports = {
         path: __dirname + '/dist/',
         filename: "global.min.js"
     },
-    devtool: 'source-map',
+    devtool: devtoolConfig,
     module: {
         loaders: [
             { test: /\.css$/, loader: ExtractTextPlugin.extract( 'style', 'css?sourceMap') },

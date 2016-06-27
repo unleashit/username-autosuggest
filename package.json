@@ -25,7 +25,7 @@
   },
   "scripts": {
     "test": "",
-    "production": "webpack -p",
+    "production": "NODE_ENV=production|| set NODE_ENV=production&& webpack -p",
     "start": "webpack-dev-server --inline --hot --config webpack.config.js"
   },
   "keywords": [],

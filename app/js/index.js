@@ -38,12 +38,14 @@ submitBtn.addEventListener('click', (e)=> {
 
     // clears any previous suggestions/validations
     render.clearAll();
+    
+    const username = input.value.trim();
 
     // validates input and returns true or false
-    if (validations.userInput(input.value)) {
+    if (validations.userInput(username)) {
 
     // queries server for username. If available, render congrats. If not, offer suggestions.
-        checkUsername.queryServer(input.value);
+        checkUsername.queryServer(username);
     }
 
     // clears the user input
