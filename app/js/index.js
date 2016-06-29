@@ -12,7 +12,7 @@ import '../scss/style.scss';
 
 // The User search API accepts a comma-separated list of usernames, and returns
 // user data for any matching records
-axios.get("http://chegg-tutors.appspot.com/coding-challenge/api/user/?username=Hillary2016").then(function (data) {
+axios("http://chegg-tutors.appspot.com/coding-challenge/api/user/?username=Hillary2016").then(function (data) {
 	// This logs Hillary2016's user data, since the username is registered
 	console.log(JSON.stringify(data.data));
 });

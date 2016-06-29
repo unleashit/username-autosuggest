@@ -30,7 +30,6 @@ export default {
 
         let scontainer = document.createElement('ul');
         scontainer.className = "suggestions";
-        // cheating here with innerHTML due to time constraints!
         scontainer.innerHTML = items.map(item => {
             return `<li class="suggestion" data-suggestion=${item}>${item}</li>`
         }).join('');
@@ -45,7 +44,6 @@ export default {
 
         // listener is set on the UL, with delegation for the LIs
         suggestions.addEventListener('click', (e)=> {
-            console.log('click');
             input.value = e.target.getAttribute('data-suggestion');
         });
     },

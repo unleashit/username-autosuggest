@@ -31,9 +31,7 @@ export default {
                 // check to see if chosen username is absent from the response.
                 // If so, render sucesss they are good to go.
                 // note: using lodash here as find is not polyfilled with Babel
-                if (!_.find(resp.data, u => {
-                    return u.username === username;
-                })) {
+                if (!_.find(resp.data, u => u.username === username)) {
                     //console.log('user available!');
                     return render.success(username);
                 }
@@ -102,15 +100,14 @@ export default {
         this.suggestUsernames = new SuggestUsernames(username);
         return this.suggestUsernames.retrieveAll();
     },
-    getNewSuggestions(username) {
+    getNewSuggestions() {
         // I ended up hacking this. My original plan was to determine
         // which types of suggestions failed, and swap with the same type but I ran out of time.
         // this just tests 10 new rotating suggestions at a time, so user may see repeats of suggestion types.
         // BTW, I've noticed that this "user DB" is LARGE, so that's why I'm going with 10 at a time to keep server calls to a minimum
         // In hindsight, I would have sent more than 3 suggestions on the first call, but I'm out of time.
 
-        return [1,2,3,1,2,3,1,2,3,3].map(s => {
-            return this.suggestUsernames.retrieveSingle(s);
-        });
+        return [1,2,3,1,2,3,1,2,3,3].map(s =>
+            this.suggestUsernames.retrieveSingle(s));
     }
 };
